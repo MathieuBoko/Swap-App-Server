@@ -30,31 +30,33 @@ app.post('/formData', (req, res) => {
     formDataArray = [formDataArray];
   }
 
-  const processShift = async (shift) => {
-    const requiredFields = ['Email', 'Position', 'Date', 'Outbound', 'Inbound'];
-    const missingFields = requiredFields.filter(field => !shift[field]);
+  const processShift = (shift) => {
+  const requiredFields = ['Email', 'Position', 'Date', 'Outbound', 'Inbound'];
+  const missingFields = requiredFields.filter(field => !shift[field]);
 
-    if (missingFields.length > 0) {
-      return { error: 'Incomplete form data', missingFields };
-    }
+  if (missingFields.length > 0) {
+    return Promise.resolve({ error: 'Incomplete form data', missingFields });
+  }
 
-    try {
-      const insertedData = await db('Swaps')
-        .insert({ ...shift, Sent: new Date() })
-        .returning('*');
-
+  return db('Swaps')
+    .insert({ ...shift, Sent: new Date() })
+    .then(insertedData => {
       return { message: 'Form received and stored successfully', data: insertedData[0] };
-    } catch (error) {
+    })
+    .catch(error => {
       return { error: 'Internal Server Error' };
-    }
-  };
+    });
+};
 
-  const processShifts = async () => {
-    const results = await Promise.all(formDataArray.map(processShift));
-    res.status(200).json(results);
-  };
+const processShifts = () => {
+  const promises = formDataArray.map(processShift);
 
-  processShifts();
+  Promise.all(promises)
+    .then(results => res.status(200).json(results))
+    .catch(error => res.status(500).json({ error: 'Internal Server Error' }));
+};
+
+processShifts();
 });
 
 // From DB to DayBox.js
