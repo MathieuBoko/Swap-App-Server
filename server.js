@@ -127,7 +127,7 @@ app.delete('/deleteOutdatedRows', (req, res) => {
 
 const runAutoDelete = () => {
   const currentTime = new Date();
-  const autoDeleteTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 0, 0, 0, 0);
+  const autoDeleteTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() + 1, 0, 0, 0, 0);
   const timeUntilAutoDelete = autoDeleteTime - currentTime;
 
   setTimeout(() => {
