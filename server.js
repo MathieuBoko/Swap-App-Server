@@ -89,8 +89,8 @@ app.get('/formData/:date', (req, res) => {
     .then(data => {
       const formatedData = data.map(entry => ({
         ...entry,
-        Date: new Date(entry.Date).toLocaleDateString(),
-        Sent: new Date(entry.Sent).toLocaleString() 
+        Date: new Date(entry.Date).toLocaleDateString('fr-FR'),
+        Sent: new Date(entry.Sent).toLocaleString('fr-FR', { hour12: false}) 
       }));
       res.status(200).json({ data: formatedData });
     })
@@ -106,8 +106,8 @@ app.get('/allFormData', (req, res) => {
     .then(data => {
       const formatedData = data.map(entry => ({
         ...entry,
-        Date: new Date(entry.Date).toLocaleDateString(),
-        Sent: new Date(entry.Sent).toLocaleString()
+        Date: new Date(entry.Date).toLocaleDateString('fr-FR'),
+        Sent: new Date(entry.Sent).toLocaleString('fr-FR', { hour12: false})
       }));
       res.status(200).json({ data: formatedData });
     })
