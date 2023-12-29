@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -78,8 +77,8 @@ app.get('/formData/:date', (req, res) => {
     .then(data => {
       const formatedData = data.map(entry => ({
         ...entry,
-        Date: new Date(entry.Date).toLocaleDateString(), // Format Date before sending it
-        Sent: new Date(entry.Sent).toLocaleString() // Format Sent before sending it
+        Date: new Date(entry.Date).toLocaleDateString(),
+        Sent: new Date(entry.Sent).toLocaleString() 
       }));
       res.status(200).json({ data: formatedData });
     })
