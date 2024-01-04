@@ -1,8 +1,2 @@
-# Swap App Server
-
-Branches:
-
-- 1.12.2023 > First prototype
-- 8.12.2023 > Update 1
-- 15.12.2023 > Update 2
-- 5.01.2024 > Update 3
+# Swap App Server January 5th 2024 Update
+Client: https://github.com/MathDevWeb/swap-app/tree/5.01.2024
