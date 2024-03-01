@@ -2,5 +2,6 @@
 Client:
 <br>
 https://github.com/MathDevWeb/swap-app/tree/1.03.2024
+https://github.com/MathDevWeb/swap-app/tree/2.02.2024
 
 - Added a quote to filter outdated data instead of clean-up cron job at Database level
