@@ -44,7 +44,10 @@ app.post('/formData', (req, res) => {
         return { message: 'Form received and stored successfully', data: insertedData[0] };
       })
       .catch(error => {
-        return { error: 'Internal Server Error' };
+        return { 
+          error,
+          message: 'Internal Server Error' 
+        };
       });
   };
   
@@ -53,7 +56,10 @@ app.post('/formData', (req, res) => {
   
     Promise.all(promises)
       .then(results => res.status(200).json(results))
-      .catch(error => res.status(500).json({ error: 'Internal Server Error' }));
+      .catch(error => res.status(500).json({ 
+        error, 
+        message: 'Internal Server Error' 
+      }));
   };
   
   processMultiShift();
