@@ -2,6 +2,7 @@
 
 Branches:
 
+- 12.01.2025 > Update 6 - Applying MVC architecture | Refactoring
 - 1.06.2024 > Update 5
 - 2.02.2024 > Update 4
 - 5.01.2024 > update 3
